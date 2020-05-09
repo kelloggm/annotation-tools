@@ -1,5 +1,6 @@
 package scenelib.annotations.el;
 
+import com.google.common.collect.ImmutableMap;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import javax.lang.model.type.TypeMirror;
 import java.util.Map;
@@ -97,6 +98,15 @@ public class AMethod extends ADeclaration {
      */
     public void setReturnTypeMirror(@Nullable TypeMirror returnTypeMirror) {
         this.returnTypeMirror = returnTypeMirror;
+    }
+
+    /**
+     * Get the parameters, as a map from parameter index (0-indexed) to representation.
+     *
+     * @return an immutable copy of the vivified parameters, as a map from index to representation
+     */
+    public Map<Integer, AField> getParameters() {
+        return ImmutableMap.copyOf(parameters);
     }
 
     @Override
