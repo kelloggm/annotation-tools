@@ -85,6 +85,17 @@ public class AMethod extends ADeclaration {
     }
 
     /**
+     * Sets fields from information in the methodElement.
+     *
+     * @param methodElt the element whose infromation to propagate into this
+     */
+    public void setFieldsFromMethodElement(ExecutableElement methodElt) {
+        setReturnTypeMirror(methodElt.getReturnType());
+        setTypeParameters(methodElt.getTypeParameters());
+        vivifyAndAddTypeMirrorToParameters(methodElt);
+    }
+
+    /**
      * Returns the method's simple name.
      *
      * @return the method's simple name
