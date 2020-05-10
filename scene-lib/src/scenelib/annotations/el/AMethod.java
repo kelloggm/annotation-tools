@@ -8,10 +8,8 @@ import javax.lang.model.element.Name;
 import javax.lang.model.element.TypeParameterElement;
 import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.TypeMirror;
-import javax.lang.model.type.TypeMirror;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import scenelib.annotations.el.AField;
 
+import scenelib.annotations.el.AField;
 import scenelib.annotations.util.coll.VivifyingMap;
 
 /**
@@ -30,7 +28,7 @@ public class AMethod extends ADeclaration {
     public final ATypeElement returnType; // initialized in constructor
 
     /** The return type of the method, or null if the method's return type is unknown or void. */
-    private @Nullable TypeMirror returnTypeMirror;
+    private /*@Nullable*/ TypeMirror returnTypeMirror;
 
     /** The method's annotated receiver parameter type */
     public final AField receiver; // initialized in constructor
@@ -167,16 +165,16 @@ public class AMethod extends ADeclaration {
      *
      * @return the return type, or null if the return type is unknown or void
      */
-    public @Nullable TypeMirror getReturnTypeMirror() {
+    public /*@Nullable*/ TypeMirror getReturnTypeMirror() {
         return returnTypeMirror;
     }
 
     /**
      * Set the return type.
      *
-     * @param the return type
+     * @param returnTypeMirror the return type
      */
-    public void setReturnTypeMirror(@Nullable TypeMirror returnTypeMirror) {
+    public void setReturnTypeMirror(/*@Nullable*/ TypeMirror returnTypeMirror) {
         if (returnTypeMirror == null) {
             return;
         }
