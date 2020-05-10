@@ -1,9 +1,9 @@
 package scenelib.annotations.el;
 
 import com.google.common.collect.ImmutableMap;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import javax.lang.model.type.TypeMirror;
 import java.util.Map;
+import javax.lang.model.type.TypeMirror;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import scenelib.annotations.util.coll.VivifyingMap;
 
@@ -94,7 +94,7 @@ public class AMethod extends ADeclaration {
     /**
      * Set the return type.
      *
-     * @param the return type
+     * @param returnTypeMirror the return type
      */
     public void setReturnTypeMirror(@Nullable TypeMirror returnTypeMirror) {
         this.returnTypeMirror = returnTypeMirror;
