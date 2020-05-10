@@ -1,5 +1,7 @@
 package scenelib.annotations.el;
 
+import javax.lang.model.element.TypeParameterElement;
+import java.util.List;
 import com.google.common.collect.ImmutableMap;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import javax.lang.model.type.TypeMirror;
@@ -11,9 +13,13 @@ import scenelib.annotations.util.coll.VivifyingMap;
  * An annotated method; contains bounds, return, parameters, receiver, and throws.
  */
 public class AMethod extends ADeclaration {
+
     /** The method's annotated type parameter bounds */
     public final VivifyingMap<BoundLocation, ATypeElement> bounds =
             ATypeElement.<BoundLocation>newVivifyingLHMap_ATE();
+
+    /** The type parameters of this method. */
+    private List<? extends TypeParameterElement> typeParameters = null;
 
     /** The method's annotated return type */
     public final ATypeElement returnType; // initialized in constructor
@@ -80,6 +86,24 @@ public class AMethod extends ADeclaration {
      */
     public String getMethodName() {
         return methodSignature.substring(0, methodSignature.indexOf("("));
+    }
+
+    /**
+     * Get the type parameters of this method.
+     *
+     * @return the list of type parameters
+     */
+    public List<? extends TypeParameterElement> getTypeParameters() {
+        return typeParameters;
+    }
+
+    /**
+     * Set the type parameters of this method.
+     *
+     * @param the list of type parameters
+     */
+    public void setTypeParameters(List<? extends TypeParameterElement> typeParameters) {
+        this.typeParameters = typeParameters;
     }
 
     /**
