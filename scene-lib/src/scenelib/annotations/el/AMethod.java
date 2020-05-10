@@ -119,6 +119,13 @@ public class AMethod extends ADeclaration {
      * @param the list of type parameters
      */
     public void setTypeParameters(List<? extends TypeParameterElement> typeParameters) {
+        if (typeParameters == null) {
+            return;
+        }
+        if (this.typeParameters != null && this.typeParameters != typeParameters) {
+            throw new Error(String.format("setTypeParameters(%s): already is %s%n",
+                                          typeParameters, this.typeParameters));
+        }
         this.typeParameters = typeParameters;
     }
 
@@ -170,6 +177,13 @@ public class AMethod extends ADeclaration {
      * @param the return type
      */
     public void setReturnTypeMirror(@Nullable TypeMirror returnTypeMirror) {
+        if (returnTypeMirror == null) {
+            return;
+        }
+        if (this.returnTypeMirror != null && this.returnTypeMirror != returnTypeMirror) {
+            throw new Error(String.format("setReturnTypeMirror(%s): already is %s%n",
+                                          returnTypeMirror, this.returnTypeMirror));
+        }
         this.returnTypeMirror = returnTypeMirror;
     }
 
