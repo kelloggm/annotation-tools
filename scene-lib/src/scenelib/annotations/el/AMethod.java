@@ -1,11 +1,16 @@
 package scenelib.annotations.el;
 
-import javax.lang.model.element.TypeParameterElement;
-import java.util.List;
 import com.google.common.collect.ImmutableMap;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import javax.lang.model.type.TypeMirror;
+import java.util.List;
 import java.util.Map;
+import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Name;
+import javax.lang.model.element.TypeParameterElement;
+import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.TypeMirror;
+import javax.lang.model.type.TypeMirror;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import scenelib.annotations.el.AField;
 
 import scenelib.annotations.util.coll.VivifyingMap;
 
@@ -104,6 +109,39 @@ public class AMethod extends ADeclaration {
      */
     public void setTypeParameters(List<? extends TypeParameterElement> typeParameters) {
         this.typeParameters = typeParameters;
+    }
+
+    /**
+     * Populates the method parameter map for the method. This is called from the constructor, so
+     * that the method parameter map always has an entry for each parameter.
+     *
+     * @param methodElt the method whose parameters should be vivified
+     */
+    public void vivifyAndAddTypeMirrorToParameters(ExecutableElement methodElt) {
+        for (int i = 0; i < methodElt.getParameters().size(); i++) {
+            VariableElement ve = methodElt.getParameters().get(i);
+            TypeMirror type = ve.asType();
+            Name name = ve.getSimpleName();
+            vivifyAndAddTypeMirrorToParameter(i, type, name);
+        }
+    }
+
+    /**
+     * Obtain the parameter at the given index, which can be further operated on to e.g. add a type
+     * annotation.
+     *
+     * @param i the parameter index (first parameter is zero)
+     * @param type the type of the parameter
+     * @param simpleName the name of the parameter
+     * @return an AFieldWrapper representing the parameter
+     */
+    public AField vivifyAndAddTypeMirrorToParameter(int i, TypeMirror type, Name simpleName) {
+        AField param = parameters.getVivify(i);
+        param.setName(simpleName.toString());
+        if (param.getTypeMirror() == null) {
+            param.setTypeMirror(type);
+        }
+        return param;
     }
 
     /**
