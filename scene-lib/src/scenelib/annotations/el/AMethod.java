@@ -16,7 +16,6 @@ import scenelib.annotations.util.coll.VivifyingMap;
  * An annotated method; contains bounds, return, parameters, receiver, and throws.
  */
 public class AMethod extends ADeclaration {
-
     /** The method's annotated type parameter bounds */
     public final VivifyingMap<BoundLocation, ATypeElement> bounds =
             ATypeElement.<BoundLocation>newVivifyingLHMap_ATE();
