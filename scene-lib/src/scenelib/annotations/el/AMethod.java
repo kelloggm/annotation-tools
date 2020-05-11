@@ -119,7 +119,7 @@ public class AMethod extends ADeclaration {
         if (typeParameters == null) {
             return;
         }
-        if (this.typeParameters != null && this.typeParameters != typeParameters) {
+        if (this.typeParameters != null && !this.typeParameters.equals(typeParameters)) {
             throw new Error(String.format("setTypeParameters(%s): already is %s%n",
                                           typeParameters, this.typeParameters));
         }
