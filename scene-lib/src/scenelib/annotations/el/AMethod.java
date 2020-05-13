@@ -127,12 +127,12 @@ public class AMethod extends ADeclaration {
     }
 
     /**
-     * Populates the method parameter map for the method. This is called from the constructor, so
-     * that the method parameter map always has an entry for each parameter.
+     * Populates the method parameter map for the method.
+     * Ensures that the method parameter map always has an entry for each parameter.
      *
      * @param methodElt the method whose parameters should be vivified
      */
-    public void vivifyAndAddTypeMirrorToParameters(ExecutableElement methodElt) {
+    private void vivifyAndAddTypeMirrorToParameters(ExecutableElement methodElt) {
         for (int i = 0; i < methodElt.getParameters().size(); i++) {
             VariableElement ve = methodElt.getParameters().get(i);
             TypeMirror type = ve.asType();
