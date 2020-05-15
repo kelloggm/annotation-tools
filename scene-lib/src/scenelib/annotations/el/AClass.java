@@ -365,12 +365,13 @@ public class AClass extends ADeclaration {
     }
 
     /**
-     * Update the method's fields, using information from the given ExecutableElement.
+     * Vivify the method if necessary, then update the method's fields using
+     * information from the given ExecutableElement.
      *
      * @param methodElt the method
      * @return an interned AMethod representing the method
      */
-    public AMethod setFieldsFromMethodElement(ExecutableElement methodElt) {
+    public AMethod vivifyAndSetFieldsFromMethodElement(ExecutableElement methodElt) {
         String methodSignature = JVMNames.getJVMMethodSignature(methodElt);
         AMethod method = methods.getVivify(methodSignature);
         method.setFieldsFromMethodElement(methodElt);
@@ -378,13 +379,13 @@ public class AClass extends ADeclaration {
     }
 
     /**
-     * Set the type mirror of the given field.
+     * Vivify the given field if necessary, then set its type mirror.
      *
      * @param fieldName the name of the field
      * @param type the type of the field
      * @return an interned AField representing the field
      */
-    public AField setTypeMirror(String fieldName, TypeMirror type) {
+    public AField vivifyAndSetTypeMirror(String fieldName, TypeMirror type) {
         AField field = fields.getVivify(fieldName);
         field.setTypeMirror(type);
         return field;
