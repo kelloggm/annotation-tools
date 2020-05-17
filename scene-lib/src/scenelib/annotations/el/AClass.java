@@ -55,8 +55,8 @@ public class AClass extends ADeclaration {
         createFieldInitMap();
 
     /**
-     * The type element representing the class. Clients must call {@link
-     * #setTypeElement(TypeElement)} before accessing this field.
+     * The type element representing the class.
+     * Clients must call {@link #setTypeElement(TypeElement)} before accessing this field.
      */
     private /*@MonotonicNonNull*/ TypeElement typeElement = null;
 
