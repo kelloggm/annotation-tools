@@ -252,7 +252,7 @@ public class AClass extends ADeclaration {
     }
 
     /**
-     * Checks if the given class is an enum or not.
+     * Checks whether the given class is an enum.
      *
      * @param className the simple class name of this class or one of its outer classes
      * @return true if the given class is an enum
@@ -262,7 +262,7 @@ public class AClass extends ADeclaration {
     }
 
     /**
-     * Checks if this class is an enum.
+     * Checks whether this class is an enum.
      *
      * @return true if this class is an enum
      */
