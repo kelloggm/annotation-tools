@@ -363,4 +363,31 @@ public class AClass extends ADeclaration {
     public Collection<? extends Annotation> getAnnotations() {
         return tlAnnotationsHere;
     }
+
+    /**
+     * Vivify the method if necessary, then update the method's fields using
+     * information from the given ExecutableElement.
+     *
+     * @param methodElt the method
+     * @return an interned AMethod representing the method
+     */
+    public AMethod vivifyAndSetFieldsFromMethodElement(ExecutableElement methodElt) {
+        String methodSignature = JVMNames.getJVMMethodSignature(methodElt);
+        AMethod method = methods.getVivify(methodSignature);
+        method.setFieldsFromMethodElement(methodElt);
+        return method;
+    }
+
+    /**
+     * Vivify the given field if necessary, then set its type mirror.
+     *
+     * @param fieldName the name of the field
+     * @param type the type of the field
+     * @return an interned AField representing the field
+     */
+    public AField vivifyAndSetTypeMirror(String fieldName, TypeMirror type) {
+        AField field = fields.getVivify(fieldName);
+        field.setTypeMirror(type);
+        return field;
+    }
 }
